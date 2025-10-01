@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
 
 fn main() {
-    // solution(n, l, r);
+    // bitonic_array(n, l, r);
     let solution = bitonic_array(5, 3, 10);
     println!("Solution: {:?}", solution);
 }
@@ -39,3 +39,21 @@ fn bitonic_array(n: usize, start: i32, end: i32) -> Vec<i32> {
 }
 
 //output 9 10 9 8 7 
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_case1() {
+        let seq = bitonic_array(5, 3, 10);
+        assert_eq!(seq, vec![9, 10, 9, 8, 7]);
+    }
+
+    #[test]
+    fn test_case2_min_size() {
+        let seq = bitonic_array(1, 3, 10);
+        assert_eq!(seq, vec![9]); // só o primeiro elemento
+    }
+
+}

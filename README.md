@@ -17,8 +17,8 @@ Implement: https://www.geeksforgeeks.org/generate-bitonic-sequence-of-length-n-f
 
 
 ## Do:
-- Implementation
-- Unit tests
+-[ok] Implementation 
+-[ok] Unit tests
 - Performance Test / Benchmarks
 - Proper Documentation
 - Expose Solution via REST API
