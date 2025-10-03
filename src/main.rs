@@ -1,7 +1,44 @@
+use axum::{extract::Query, response::Json, routing::get, Router};
+use serde::Deserialize;
+use axum::Router;
+// use std::net::SocketAddr;
+
+// lib
 use code_kata_bitonic_sequence_rust::get_bitonic_sequence;
 
-fn main() {
+
+#[derive(Deserialize)]
+struct Params {
+    n: usize,
+    l: i32,
+    r: i32,
+}
+
+//return function
+async fn bitonic_handler(Query(params): Query<Params>) -> Json<Vec<i32>> {
+    let result = get_bitonic_sequence(params.n, params.l, params.r);
+    println!("Solution: {:?}", result);
+    Json(result)
+}
+
+#[tokio::main]
+async fn main() {
     // bitonic_array(n, l, r);
-    let solution = get_bitonic_sequence(5, 3, 10);
-    println!("Solution: {:?}", solution);
+    //let solution = get_bitonic_sequence(5, 3, 10);
+    
+    let app = Router::new().route("/bitonic", get(bitonic_handler));
+
+    // let app = Router::new();
+
+
+    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    println!("Server running at http://{}/bitonic", addr);
+    // axum::Server::bind(&addr)
+    //     .serve(app.into_make_service())
+    //     .await
+    //     .unwrap();
+
+        axum::serve(tokio::net::TcpListener::bind(addr).await.unwrap(), app)
+        .await
+        .unwrap();
 }
