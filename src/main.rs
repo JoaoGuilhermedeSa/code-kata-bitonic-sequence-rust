@@ -28,15 +28,9 @@ async fn main() {
     
     let app = Router::new().route("/bitonic", get(bitonic_handler));
 
-    // let app = Router::new();
-
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("Server running at http://{}/bitonic", addr);
-    // axum::Server::bind(&addr)
-    //     .serve(app.into_make_service())
-    //     .await
-    //     .unwrap();
 
         axum::serve(tokio::net::TcpListener::bind(addr).await.unwrap(), app)
         .await
