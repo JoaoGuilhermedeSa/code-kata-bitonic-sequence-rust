@@ -46,6 +46,15 @@ cargo build
 cargo run
 ```
 
+## How to test
+
+1. Get Endpoint with parameters
+
+```
+curl --location 'http://localhost:3000/bitonic?n=5&l=3&r=10' \
+--header 'Content-Type: application/json'
+```
+
 
 ## References
 - https://rust-lang.org/pt-BR/learn/get-started/

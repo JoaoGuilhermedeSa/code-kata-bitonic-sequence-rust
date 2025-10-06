@@ -1,11 +1,9 @@
 use axum::{extract::Query, response::Json, routing::get, Router};
 use serde::Deserialize;
-use axum::Router;
-// use std::net::SocketAddr;
+use std::net::SocketAddr;
 
 // lib
 use code_kata_bitonic_sequence_rust::get_bitonic_sequence;
-
 
 #[derive(Deserialize)]
 struct Params {
