@@ -20,8 +20,8 @@ Implement: https://www.geeksforgeeks.org/generate-bitonic-sequence-of-length-n-f
 -[ok] Implementation 
 -[ok] Unit tests
 - Performance Test / Benchmarks
-- Proper Documentation
-- Expose Solution via REST API
+-[ok] Proper Documentation
+-[ok] Expose Solution via REST API
 - Store Results into a Database (Redis with Docker Podman)
 
 
