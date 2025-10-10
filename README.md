@@ -22,7 +22,7 @@ Implement: https://www.geeksforgeeks.org/generate-bitonic-sequence-of-length-n-f
 - Performance Test / Benchmarks
 - [ok] Proper Documentation
 - [ok] Expose Solution via REST API
-- Store Results into a Database (Redis with Docker Podman)
+- [ok] Store Results into a Database (Redis with Docker Podman)
 
 
 ## How to install 
