@@ -1,5 +1,5 @@
-use axum::{extract::Query, response::Json, routing::get, Router};
-use serde::Deserialize;
+use axum::{extract::Query, response::IntoResponse, routing::get, Json, Router};
+use serde::{Deserialize, Serialize};
 use std::net::SocketAddr;
 
 use redis::AsyncCommands;
@@ -7,7 +7,7 @@ use redis::AsyncCommands;
 // lib
 use code_kata_bitonic_sequence_rust::get_bitonic_sequence;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Serialize)]
 struct Params {
     n: usize,
     l: i32,
@@ -15,25 +15,77 @@ struct Params {
 }
 
 //Store the response?
+#[derive(Serialize)]
+struct BitonicResponse {
+    input: Params,
+    result: Vec<i32>,
+}
 
 //return function
-async fn bitonic_handler(Query(params): Query<Params>) -> Json<Vec<i32>> {
+async fn bitonic_handler(Query(params): Query<Params>) -> impl IntoResponse {
+    
+    //Check Redis connection
+    let mut conn = redis::Client::open("redis://127.0.0.1:6379/")
+        .unwrap()
+        .get_multiplexed_async_connection()
+        .await
+        .unwrap();
+    
+    //Create a unique key for the parameters
+    let key = format!("bitonic:{}:{}:{}", params.n, params.l, params.r);
+    
+    //Check if the result is already cached
+    let result: redis::RedisResult<Option<String>> = conn.get(&key).await;
+
+    if let Ok(Some(cached)) = result {
+        println!("Result already cached on Redis. Key: {:?}", key);
+        let result: Vec<i32> = serde_json::from_str(&cached).unwrap();
+        return Json(BitonicResponse { input: params, result });
+    }
+
+    //Compute the result if not cached
     let result = get_bitonic_sequence(params.n, params.l, params.r);
+    //Store the result in Redis
+    let _: () = conn
+        .set(&key, serde_json::to_string(&result).unwrap())
+        .await
+        .unwrap();
+
+    println!("Saved on Redis. Key: {:?}", key);
     println!("Solution: {:?}", result);
 
-    //Save into the redis?
+    Json(BitonicResponse { input: params, result })
+}
 
+//list all cached results
+async fn cache_list_handler() -> impl IntoResponse {
+    let mut conn = redis::Client::open("redis://127.0.0.1:6379/")
+        .unwrap()
+        .get_multiplexed_async_connection()
+        .await
+        .unwrap();
 
-    Json(result)
+    let keys: Vec<String> = conn.keys("bitonic:*").await.unwrap_or_default();
+
+    let mut results = Vec::new();
+    
+    for key in keys {
+        let result: redis::RedisResult<Option<String>> = conn.get(&key).await;
+
+        if let Ok(value) = result {
+            results.push((key, value));
+        }
+    }
+
+    Json(results)
 }
 
 #[tokio::main]
 async fn main() {
-    // bitonic_array(n, l, r);
-    //let solution = get_bitonic_sequence(5, 3, 10);
     
-    let app = Router::new().route("/bitonic", get(bitonic_handler));
-
+    let app = Router::new()
+    .route("/bitonic", get(bitonic_handler))
+    .route("/bitonic/cache", get(cache_list_handler));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("Server running at http://{}/bitonic", addr);

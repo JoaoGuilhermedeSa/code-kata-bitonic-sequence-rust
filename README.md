@@ -17,11 +17,11 @@ Implement: https://www.geeksforgeeks.org/generate-bitonic-sequence-of-length-n-f
 
 
 ## Do:
--[ok] Implementation 
--[ok] Unit tests
+- [ok] Implementation 
+- [ok] Unit tests
 - Performance Test / Benchmarks
--[ok] Proper Documentation
--[ok] Expose Solution via REST API
+- [ok] Proper Documentation
+- [ok] Expose Solution via REST API
 - Store Results into a Database (Redis with Docker Podman)
 
 
@@ -41,24 +41,52 @@ cargo new hello-rust
 cargo build
 ```
 
-4. Run project
+4. Install Docker/Podman
+```
+brew install docker
+```
+
+5. Install Redis
+```
+docker run -d --name redis -p 6379:6379 redis:7-alpine
+```
+
+## How to Run
+
+1. Start Redis
+```
+docker start redis
+```
+
+2. Run project
 ```
 cargo run
 ```
 
 ## How to test
 
-1. Get Endpoint with parameters
+1. Get Endpoint with parameters to generate result
 
 ```
 curl --location 'http://localhost:3000/bitonic?n=5&l=3&r=10' \
 --header 'Content-Type: application/json'
 ```
 
+2. Return all cached results
+```
+curl --location 'http://localhost:3000/bitonic/cache' \
+--header 'Content-Type: application/json'
+```
+
+## When you need to update the libraries version
+```
+cargo update -p redis
+```
+
 
 ## References
 - https://rust-lang.org/pt-BR/learn/get-started/
-
+- https://crates.io/crates/redis (Repository central)
 
 
 
