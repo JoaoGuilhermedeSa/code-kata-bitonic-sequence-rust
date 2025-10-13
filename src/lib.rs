@@ -1,6 +1,6 @@
 pub fn get_bitonic_sequence(n: i32, l: i32, r: i32) -> Vec<i32> {
   if n > (r - l) * 2 + 1 {
-    [-1].to_vec();
+    return [-1].to_vec();
   }
 
   let mut dq = vec![];
