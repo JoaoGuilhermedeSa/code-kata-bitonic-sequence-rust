@@ -52,7 +52,7 @@ docker run -d --name redis -p 6379:6379 redis:7-alpine
 ```
 
 6. Instal k6
-````
+```
 brew install k6
 ```
 
@@ -66,6 +66,11 @@ docker start redis
 2. Run project
 ```
 cargo run
+```
+
+3. Run k6 test performance
+```
+k6 run index.js --vus 20 --duration 60s
 ```
 
 ## How to test
