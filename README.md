@@ -93,6 +93,8 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 cargo update -p redis
 ```
 
+## Performance Test
+
 
 ## References
 - https://rust-lang.org/pt-BR/learn/get-started/
