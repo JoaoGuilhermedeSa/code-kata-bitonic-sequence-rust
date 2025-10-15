@@ -79,6 +79,7 @@ cargo run
 ```
 
 3. Run k6 test performance
+
 ```
 k6 run index.js --vus 20 --duration 60s
 ```
@@ -105,9 +106,7 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 cargo update -p redis
 ```
 
-
 ## Clear redis cache
-
 
 ```
 docker exec -it redis redis-cli FLUSHALL
@@ -121,13 +120,7 @@ Tests ran with Apache JMeter
 
 ![Results Summary](./assets/results-summary.png)
 
-![Results Graph](./assets/results-graph.png)
-
 ## References
 
 - https://rust-lang.org/pt-BR/learn/get-started/
 - https://crates.io/crates/redis (Repository central)
-
-```
-
-```

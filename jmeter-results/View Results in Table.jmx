@@ -29,7 +29,7 @@
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variáveis Definidas Pelo Usuário">
             <collectionProp name="Arguments.arguments">
               <elementProp name="n" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
@@ -129,6 +129,33 @@
             </objProp>
             <stringProp name="filename"></stringProp>
           </ResultCollector>
+          <hashTree/>
+          <kg.apc.jmeter.listener.GraphsGeneratorListener guiclass="TestBeanGUI" testclass="kg.apc.jmeter.listener.GraphsGeneratorListener" testname="jp@gc - Graphs Generator">
+            <boolProp name="aggregateRows">false</boolProp>
+            <boolProp name="autoScaleRows">false</boolProp>
+            <stringProp name="endOffset"></stringProp>
+            <stringProp name="excludeLabels"></stringProp>
+            <boolProp name="excludeSamplesWithRegex">false</boolProp>
+            <intProp name="exportMode">0</intProp>
+            <stringProp name="filePrefix"></stringProp>
+            <stringProp name="forceY"></stringProp>
+            <stringProp name="granulation">60000</stringProp>
+            <intProp name="graphHeight">600</intProp>
+            <intProp name="graphWidth">800</intProp>
+            <stringProp name="includeLabels"></stringProp>
+            <boolProp name="includeSamplesWithRegex">false</boolProp>
+            <stringProp name="limitRows">150</stringProp>
+            <stringProp name="lineWeight"></stringProp>
+            <stringProp name="lowCountLimit"></stringProp>
+            <stringProp name="outputBaseFolder"></stringProp>
+            <boolProp name="paintGradient">true</boolProp>
+            <boolProp name="paintZeroing">true</boolProp>
+            <boolProp name="preventOutliers">false</boolProp>
+            <boolProp name="relativeTimes">false</boolProp>
+            <stringProp name="resultsFileName"></stringProp>
+            <stringProp name="startOffset"></stringProp>
+            <stringProp name="successFilter"></stringProp>
+          </kg.apc.jmeter.listener.GraphsGeneratorListener>
           <hashTree/>
         </hashTree>
         <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table">
