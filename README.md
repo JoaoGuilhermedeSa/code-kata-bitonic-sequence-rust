@@ -78,6 +78,11 @@ docker start redis
 cargo run
 ```
 
+3. Run k6 test performance
+```
+k6 run index.js --vus 20 --duration 60s
+```
+
 ## How to test
 
 1. Get Endpoint with parameters to generate result
@@ -100,7 +105,9 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 cargo update -p redis
 ```
 
+
 ## Clear redis cache
+
 
 ```
 docker exec -it redis redis-cli FLUSHALL
