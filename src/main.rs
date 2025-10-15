@@ -1,3 +1,17 @@
+//! # Bitonic Sequence REST API Server
+//!
+//! This application provides a REST API for generating bitonic sequences and caching
+//! results using Redis. It's built with Axum web framework and Tokio async runtime.
+//!
+//! ## Endpoints
+//!
+//! - `GET /bitonic?n=<length>&l=<start>&r=<end>` - Generate bitonic sequence
+//! - `GET /bitonic/cache` - Retrieve all cached results
+//!
+//! ## Usage
+//!
+//! Start the server with `cargo run` and access endpoints at `http://localhost:3000`
+//!
 use axum::{extract::Query, response::IntoResponse, routing::get, Json, Router};
 use serde::{Deserialize, Serialize};
 use std::net::SocketAddr;
@@ -7,6 +21,13 @@ use redis::AsyncCommands;
 // lib
 use code_kata_bitonic_sequence_rust::get_bitonic_sequence_v2;
 
+/// Request parameters for the bitonic sequence generation endpoint.
+///
+/// # Fields
+///
+/// * `n` - The desired length of the bitonic sequence
+/// * `l` - The start of the range (inclusive)
+/// * `r` - The end of the range (inclusive)
 #[derive(Deserialize, Serialize)]
 struct Params {
     n: u32,
@@ -14,10 +35,14 @@ struct Params {
     r: i32,
 }
 
-//Store the response?
+/// Response structure for the bitonic sequence API.
+///
+/// Contains the generated sequence and metadata about the request.
 #[derive(Serialize)]
 struct BitonicResponse {
+    /// Input params, eg. n=5, l=3, r=10
     input: Params,
+    /// The generated bitonic sequence
     result: Vec<i32>,
 }
 

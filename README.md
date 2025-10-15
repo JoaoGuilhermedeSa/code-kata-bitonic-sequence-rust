@@ -106,8 +106,12 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 cargo update -p redis
 ```
 
-## Clear redis cache
+## Generate documentation for all crates
+```
+cargo doc --workspace --all-features --open
+```
 
+## Clear redis cache
 ```
 docker exec -it redis redis-cli FLUSHALL
 ```

@@ -9,3 +9,8 @@ tokio = { version = "1", features = ["full"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 redis = { version = "0.32.7", features = ["tokio-comp"] }
+
+# cargo specific for doc generation
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
