@@ -93,6 +93,11 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 cargo update -p redis
 ```
 
+## Generate documentation for all crates
+```
+cargo doc --workspace --all-features --open
+```
+
 ## Performance Test
 
 
