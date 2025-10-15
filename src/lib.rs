@@ -10,7 +10,7 @@
 //! ## Example
 //!
 //! ```rust
-//! use your_crate_name::get_bitonic_sequence;
+//! use code_kata_bitonic_sequence_rust::get_bitonic_sequence;
 //!
 //! let sequence = get_bitonic_sequence(5, 3, 10);
 //! println!("{:?}", sequence);
@@ -49,7 +49,7 @@ use std::collections::VecDeque;
 /// # Examples
 ///
 /// ```rust
-/// # use your_crate_name::get_bitonic_sequence;
+/// # use code_kata_bitonic_sequence_rust::get_bitonic_sequence;
 /// // Generate a bitonic sequence of length 5 from range [3, 10]
 /// let result = get_bitonic_sequence(5, 3, 10);
 /// assert_ne!(result, vec![-1]);

@@ -100,6 +100,12 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 --header 'Content-Type: application/json'
 ```
 
+## How to run unit tests
+
+```
+cargo test
+```
+
 ## When you need to update the libraries version
 
 ```

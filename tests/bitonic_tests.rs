@@ -17,3 +17,10 @@ fn test_case3_impossible() {
     let seq = get_bitonic_sequence_v2(5, 7, 8);
     assert_eq!(seq, vec![-1]);
 }
+
+#[test]
+fn test_case2_min_size() {
+    let seq = get_bitonic_sequence_v2(1, 3, 10);
+    assert_eq!(seq, vec![9]); 
+}
+
