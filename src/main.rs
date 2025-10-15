@@ -9,7 +9,7 @@ use code_kata_bitonic_sequence_rust::get_bitonic_sequence_v2;
 
 #[derive(Deserialize, Serialize)]
 struct Params {
-    n: i32,
+    n: u32,
     l: i32,
     r: i32,
 }
