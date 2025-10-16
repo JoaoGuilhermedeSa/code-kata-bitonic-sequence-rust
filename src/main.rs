@@ -51,6 +51,7 @@ async fn bitonic_handler(Query(params): Query<Params>) -> impl IntoResponse {
     
     //TODO Maybe use proxy, and create a singleton connection?
 
+    //TODO Handle connection errors
     //Check Redis connection
     let mut conn = redis::Client::open("redis://127.0.0.1:6379/")
         .unwrap()
@@ -59,7 +60,6 @@ async fn bitonic_handler(Query(params): Query<Params>) -> impl IntoResponse {
         .unwrap();
     
     //Create a unique key for the parameters
-    //TODO:  create a TTL?
     let key = format!("bitonic:{}:{}:{}", params.n, params.l, params.r);
     
     //Check if the result is already cached
@@ -75,7 +75,7 @@ async fn bitonic_handler(Query(params): Query<Params>) -> impl IntoResponse {
     let result = get_bitonic_sequence_v2(params.n, params.l, params.r);
     //Store the result in Redis
     let _: () = conn
-        .set(&key, serde_json::to_string(&result).unwrap())
+        .set_ex(&key, serde_json::to_string(&result).unwrap(), 3600)// Set an expiration time of 1 hour
         .await
         .unwrap();
 
