@@ -53,7 +53,7 @@ async fn bitonic_handler(Query(params): Query<Params>) -> impl IntoResponse {
 
     //TODO Handle connection errors
     //Check Redis connection
-    let mut conn = redis::Client::open("redis://127.0.0.1:6379/")
+    let mut conn = redis::Client::open("redis://redis:6379/")
         .unwrap()
         .get_multiplexed_async_connection()
         .await
@@ -87,7 +87,7 @@ async fn bitonic_handler(Query(params): Query<Params>) -> impl IntoResponse {
 
 //list all cached results
 async fn cache_list_handler() -> impl IntoResponse {
-    let mut conn = redis::Client::open("redis://127.0.0.1:6379/")
+    let mut conn = redis::Client::open("redis://redis:6379/")
         .unwrap()
         .get_multiplexed_async_connection()
         .await
@@ -115,7 +115,7 @@ async fn main() {
     .route("/bitonic", get(bitonic_handler))
     .route("/bitonic/cache", get(cache_list_handler));
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
     println!("Server running at http://{}/bitonic", addr);
     //
     axum::serve(tokio::net::TcpListener::bind(addr).await.unwrap(), app)
