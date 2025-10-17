@@ -6,9 +6,13 @@ services:
     ports:
       - "3000:3000"
     # platform: linux/amd64
+    cpus: 0.5
+    mem_limit: 512M
     depends_on: 
       - redis
   redis:
     image: redis:7-alpine
     ports:
       - "6379:6379"
+    cpus: 0.5
+    mem_limit: 512M      

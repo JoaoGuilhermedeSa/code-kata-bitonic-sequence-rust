@@ -1,16 +1,16 @@
 FROM rust:alpine3.22 AS build
 
-# ENV HTTPS_PROXY=http://us-west-2-proxy.lendingcloud.us:8080 
-# ENV HTTP_PROXY=http://us-west-2-proxy.lendingcloud.us:8080
+# ENV HTTPS_PROXY=set proxy if needed
 
 WORKDIR /app
-
 RUN apk add --no-cache musl-dev vim curl
 
 COPY . .
 RUN cargo build
 
-CMD ["cargo", "run"]
-# CMD ["sleep", "1d"]
+FROM rust:alpine3.22
+WORKDIR /app
 
-#TODO - Add the final layer with just the binary
+COPY --from=build /app/target/debug /app/
+
+CMD ["/app/code_kata_bitonic_sequence_rust"]
