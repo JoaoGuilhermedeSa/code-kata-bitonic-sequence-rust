@@ -21,7 +21,7 @@ Implement: https://www.geeksforgeeks.org/generate-bitonic-sequence-of-length-n-f
 
 - [ok] Implementation
 - [ok] Unit tests
-- Performance Test / Benchmarks
+- [ok] Performance Test / Benchmarks
 - [ok] Proper Documentation
 - [ok] Expose Solution via REST API
 - [ok] Store Results into a Database (Redis with Docker Podman)
@@ -64,7 +64,7 @@ docker run -d --name redis -p 6379:6379 redis:7-alpine
 brew install k6
 ```
 
-7. How to Run
+## How to Run
 
 1. Start Redis
 
@@ -84,7 +84,7 @@ cargo run
 k6 run index.js --vus 20 --duration 60s
 ```
 
-## How to test
+## How to Call API
 
 1. Get Endpoint with parameters to generate result
 
@@ -100,35 +100,45 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 --header 'Content-Type: application/json'
 ```
 
-## How to run unit tests
+## How to run tests
+
+### Unit Tests
 
 ```
 cargo test
 ```
 
-## When you need to update the libraries version
+### Performance Testing
+
+1. Tests ran with Apache JMeter
+
+![Results Table](./assets/results-table.png)
+
+![Results Summary](./assets/results-summary.png)
+
+2. Tests ran with K6
+
+![Results Summary](./test-performance-k6/summary.html)
+
+
+## Other commands
+
+### When you need to update the libraries version
 
 ```
 cargo update -p redis
 ```
 
-## Generate documentation for all crates
+### Generate documentation for all crates
 ```
 cargo doc --workspace --all-features --open
 ```
 
-## Clear redis cache
+### Clear redis cache
 ```
 docker exec -it redis redis-cli FLUSHALL
 ```
 
-## Performance Testing
-
-Tests ran with Apache JMeter
-
-![Results Table](./assets/results-table.png)
-
-![Results Summary](./assets/results-summary.png)
 
 ## References
 
