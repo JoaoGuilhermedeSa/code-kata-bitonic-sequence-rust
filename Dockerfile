@@ -8,7 +8,7 @@ RUN apk add --no-cache musl-dev vim curl
 COPY . .
 RUN cargo build
 
-FROM rust:alpine3.22
+FROM alpine:3.22
 WORKDIR /app
 
 COPY --from=build /app/target/debug /app/

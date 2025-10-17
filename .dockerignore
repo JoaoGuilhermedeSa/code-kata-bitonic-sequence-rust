@@ -1,0 +1,11 @@
+# Ignore build artefacts and VCS
+target
+**/target
+.git
+.gitignore
+.dockerignore
+.vscode
+.idea
+__pycache__
+*.log
+node_modules
