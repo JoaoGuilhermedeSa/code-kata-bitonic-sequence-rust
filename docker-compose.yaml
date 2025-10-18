@@ -8,6 +8,8 @@ services:
     # platform: linux/amd64
     cpus: 0.5
     mem_limit: 512M
+    environment:
+      - REDIS_URL=redis://redis:6379
     depends_on: 
       - redis
   redis:
