@@ -121,7 +121,7 @@ async fn main() {
         .route("/bitonic/cache", get(cache_list_handler))
         .with_state(redis_connection);
 
-    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
+    let addr: SocketAddr = "0.0.0.0:3000".parse().unwrap();
     println!("Server running at http://{}/bitonic", addr);
     //
     axum::serve(tokio::net::TcpListener::bind(addr).await.unwrap(), app).await.unwrap();
