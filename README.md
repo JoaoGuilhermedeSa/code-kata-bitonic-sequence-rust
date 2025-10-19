@@ -112,7 +112,8 @@ cargo test
 
 1. Tests ran with K6
 
-![Results Summary](./test-performance-k6/summary.html)
+[Results Summary](https://rawcdn.githack.com/xmacedo/code-kata-bitonic-sequence-rust/develop/test-performance-k6/summary.html)
+
 
 
 ## Other commands
