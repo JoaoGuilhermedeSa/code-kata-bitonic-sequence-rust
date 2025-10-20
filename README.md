@@ -52,19 +52,24 @@ cargo build
 brew install docker
 ```
 
-5. Install Redis
+5. Install Docker-compose
+```
+brew install docker-compose
+
+```
+6. Install Redis
 
 ```
 docker run -d --name redis -p 6379:6379 redis:7-alpine
 ```
 
-6. Instal k6
+7. Instal k6
 
 ```
 brew install k6
 ```
 
-## How to Run
+## How to run the app without Docker
 
 1. Start Redis
 
@@ -78,11 +83,22 @@ docker start redis
 cargo run
 ```
 
-3. Run k6 test performance
+
+
+## How to run the app in Docker
+
+1. Ensure Docker and Docker-compose are installed
+2. Build the app
+```
+docker-compose build
+```
+2. Execute docker-compose 
 
 ```
-k6 run index.js --vus 20 --duration 60s
+docker-compose up
 ```
+
+
 
 ## How to Call API
 
@@ -104,6 +120,10 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 
 ### Unit Tests
 
+1. Ensure Rust is installed on your host
+2. Ensure the app and redis are running
+3. Execute the unity tests
+
 ```
 cargo test
 ```
@@ -111,8 +131,8 @@ cargo test
 ### Performance Testing
 
 1. Tests ran with K6
+   * [Results Summary](https://rawcdn.githack.com/xmacedo/code-kata-bitonic-sequence-rust/develop/test-performance-k6/summary.html)
 
-![Results Summary](./test-performance-k6/summary.html)
 
 
 ## Other commands
