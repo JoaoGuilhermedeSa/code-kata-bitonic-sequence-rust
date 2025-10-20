@@ -110,13 +110,7 @@ cargo test
 
 ### Performance Testing
 
-1. Tests ran with Apache JMeter
-
-![Results Table](./assets/results-table.png)
-
-![Results Summary](./assets/results-summary.png)
-
-2. Tests ran with K6
+1. Tests ran with K6
 
 ![Results Summary](./test-performance-k6/summary.html)
 

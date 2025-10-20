@@ -19,7 +19,7 @@ use std::net::SocketAddr;
 use redis::AsyncCommands;
 
 // lib
-use code_kata_bitonic_sequence_rust::get_bitonic_sequence_v2;
+use code_kata_bitonic_sequence_rust::get_bitonic_sequence;
 
 /// Request parameters for the bitonic sequence generation endpoint.
 ///
@@ -70,7 +70,7 @@ async fn bitonic_handler(
     }
 
     //Compute the result if not cached
-    let result = get_bitonic_sequence_v2(params.n, params.l, params.r);
+    let result = get_bitonic_sequence(params.n, params.l, params.r);
 
     //Store the result in Redis
     if let Ok(result_json) = serde_json::to_string(&result) {
