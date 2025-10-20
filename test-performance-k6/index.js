@@ -10,7 +10,7 @@ export function handleSummary(data) {
       theme: "bootswatch:darkly",
     }),
     stdout: textSummary(data, { indent: " ", enableColors: true }),
-  };
+  }; 
 }
 
 export const options = {
@@ -41,6 +41,10 @@ export const options = {
     'http_req_failed': ['rate<0.01'],
   },
 };
+
+export default function () {
+  GetSimpleResult();
+}
 
 export function simple() {
   GetSimpleResult();
