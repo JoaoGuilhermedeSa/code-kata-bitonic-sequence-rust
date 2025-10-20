@@ -52,13 +52,18 @@ cargo build
 brew install docker
 ```
 
-5. Install Redis
+5. Install Docker-compose
+```
+brew install docker-compose
+
+```
+6. Install Redis
 
 ```
 docker run -d --name redis -p 6379:6379 redis:7-alpine
 ```
 
-6. Instal k6
+7. Instal k6
 
 ```
 brew install k6
@@ -126,8 +131,7 @@ cargo test
 ### Performance Testing
 
 1. Tests ran with K6
-
-[Results Summary](https://rawcdn.githack.com/xmacedo/code-kata-bitonic-sequence-rust/develop/test-performance-k6/summary.html)
+   * [Results Summary](https://rawcdn.githack.com/xmacedo/code-kata-bitonic-sequence-rust/develop/test-performance-k6/summary.html)
 
 
 
