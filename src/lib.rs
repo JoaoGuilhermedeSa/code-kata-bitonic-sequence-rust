@@ -61,22 +61,28 @@
 /// O(n) - Each element is added to the deque exactly once.
 ///
 /// # Space Complexity
-/// O(n) - The deque stores exactly n elements.
+/// O(n)² - The deque stores exactly n elements.
 pub fn get_bitonic_sequence(n: u32, l: i32, r: i32) -> Vec<i32> {
+
+  //Step 1: If it's not possible
   if n > ((r - l) * 2 + 1) as u32 {
     return [-1].to_vec();
   }
 
   let mut dq = vec![];
 
+  //2. Start with 'end'-1 as it is the maximum value less than peak value 'end'.
   dq.push(r - 1);
 
+
+  //3. While the size of deque is less than n:  
+  //- Add decreasing elements from r down to l at the tail of deque.
   let mut i = r;
   while i >=l && dq.len() < n as usize {
     dq.push(i);
     i -= 1;
   }
-
+  //- Add increasing elements from r-2 down to L at the head of deque.
   let mut j = r - 2;
   while j >= l && dq.len() < n as usize {
     dq.insert(0, j);
