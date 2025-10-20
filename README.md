@@ -64,7 +64,7 @@ docker run -d --name redis -p 6379:6379 redis:7-alpine
 brew install k6
 ```
 
-## How to Run
+## How to run the app without Docker
 
 1. Start Redis
 
@@ -78,11 +78,22 @@ docker start redis
 cargo run
 ```
 
-3. Run k6 test performance
+
+
+## How to run the app in Docker
+
+1. Ensure Docker and Docker-compose are installed
+2. Build the app
+```
+docker-compose build
+```
+2. Execute docker-compose 
 
 ```
-k6 run index.js --vus 20 --duration 60s
+docker-compose up
 ```
+
+
 
 ## How to Call API
 
@@ -103,6 +114,10 @@ curl --location 'http://localhost:3000/bitonic/cache' \
 ## How to run tests
 
 ### Unit Tests
+
+1. Ensure Rust is installed on your host
+2. Ensure the app and redis are running
+3. Execute the unity tests
 
 ```
 cargo test
