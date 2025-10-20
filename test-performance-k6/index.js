@@ -4,9 +4,8 @@ import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporte
 import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
 
 export function handleSummary(data) {
-  const summaryOutput = __ENV.SUMMARY_OUTPUT || "summary.html";
   return {
-    [summaryOutput]: htmlReport(data, {
+    "summary.html": htmlReport(data, {
       title: "Bitonic Sequence API Performance Test",
       theme: "bootswatch:darkly",
     }),
